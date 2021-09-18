@@ -20,6 +20,7 @@ const ASKIIDonut = () => {
         } else if(intervalID.current) {
             clearInterval(intervalID.current);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [ toggle ])
 
     const doCanvasDonut = () => {
@@ -69,7 +70,7 @@ const ASKIIDonut = () => {
     return (<div>
         <button type={'button'} onClick={() => setToggle((prev) => !prev)}>Toggle</button>
         <div>
-            <canvas ref={canvasRef} className={'canvasDonut'} />
+            <canvas ref={canvasRef} className={'canvasDonut'}/>
         </div>
 
     </div>);

@@ -4,16 +4,15 @@ const ASCIIDonut = () => {
     const [ toggle, setToggle ] = useState(false);
     const [ donut, setDonut ] = useState('');
 
-    const intervalID = useRef(0);
     const A = useRef(1);
     const B = useRef(1);
 
     useEffect(() => {
-        if(toggle) {
-            intervalID.current = setInterval(doDonut, 50);
-        } else if(intervalID.current) {
-            clearInterval(intervalID.current);
+        const intervalID = setInterval(doDonut, 50);
+        if(!toggle) {
+            clearInterval(intervalID)
         }
+        return () => clearInterval(intervalID);
     }, [ toggle ])
 
     const doDonut = () => {

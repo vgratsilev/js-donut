@@ -8,29 +8,23 @@ const K2 = 5;
 const ASKIIDonut = () => {
     const [ toggle, setToggle ] = useState(false);
 
-    const intervalID = useRef(0);
     const A = useRef(1);
     const B = useRef(1);
 
     const canvasRef = useRef(null)
 
     useEffect(() => {
-        if(toggle) {
-            intervalID.current = setInterval(doCanvasDonut, 50);
-        } else if(intervalID.current) {
-            clearInterval(intervalID.current);
+        const intervalID = setInterval(doCanvasDonut, 50);
+        if(!toggle) {
+            clearInterval(intervalID)
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        return () => clearInterval(intervalID);
     }, [ toggle ])
 
     const doCanvasDonut = () => {
         const ctx = canvasRef.current.getContext('2d');
         ctx.fillStyle = '#021340';
         ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-
-        if(!toggle) {
-            return;
-        }
 
         A.current += 0.07;
         B.current += 0.03;
@@ -64,7 +58,6 @@ const ASKIIDonut = () => {
                 }
             }
         }
-
     }
 
     return (<div>

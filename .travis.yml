@@ -2,7 +2,7 @@ os: linux
 dist: xenial
 language: node_js
 node_js:
-  - "lts/16"
+  - "16"
 notifications:
   email: true
 cache:
